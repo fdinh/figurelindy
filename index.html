@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Lindy Hop & Boogie Woogie Figures</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon as SVG (for modern browsers) -->
+  <link rel="icon" type="image/svg+xml" href="data/logo.svg">
+  <!-- Fallback for browsers that do not support SVG -->
+  <link rel="icon" type="image/png" sizes="32x32" href="data/logo32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="data/logo16.png">
+  <!-- Include Papa Parse via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  <style>
+    /* Universal Box Sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    /* Prevent horizontal overflow on mobile */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    /* Dark Mode Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #121212;
+      color: #e0e0e0;
+    }
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 auto;
+      text-align: center;
+    }
+    /* Password Container - shown on page load */
+    #passwordContainer {
+      background: #333;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    #passwordContainer input {
+      font-size: 16px;
+      padding: 5px;
+      margin-right: 5px;
+    }
+    #passwordContainer button {
+      font-size: 16px;
+      padding: 5px 10px;
+    }
+    /* Content Container: filters and accordion, hidden until a password is applied */
+    #contentContainer {
+      display: none;
+    }
+    /* Filter Controls: will be generated dynamically */
+    .filter-controls {
+      background: #333;
+      padding: 10px;
+      color: #fff;
+    }
+    .filter-controls .filter-group {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .filter-group span {
+      margin-right: 5px;
+      font-weight: bold;
+    }
+    .filter-group label {
+      margin-right: 8px;
+      cursor: pointer;
+    }
+    /* Static Video Filter (appended after dynamic ones) */
+    .video-filter-group {
+      display: block;
+      margin-bottom: 10px;
+    }
+    /* Accordion container: center and limit width */
+    .accordion {
+      max-width: 600px;
+      width: 100%;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+    .accordion-item {
+      width: 100%;
+      background: #1e1e1e;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    /* Accordion header styled as a flex container */
+    .accordion-header {
+      padding: 10px;
+      cursor: pointer;
+      background: #2a2a2a;
+      user-select: none;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    /* Title on left and Tempi on right */
+    .figure-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .figure-tempi {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    .accordion-content {
+      display: none;
+      padding: 10px;
+      border-top: 1px solid #444;
+      background: #1e1e1e;
+    }
+    .accordion-item.active .accordion-content {
+      display: block;
+    }
+    /* Video container styling */
+    .video-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .video-container video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+    }
+    /* Spinner styling */
+    .spinner {
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top: 4px solid #fff;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    /* Responsive adjustments for mobile */
+    @media (max-width: 600px) {
+      .accordion {
+        margin: 20px 5px;
+        padding: 0 5px;
+      }
+      .filter-controls {
+        padding: 10px 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lindy Hop & Boogie Woogie Figures</h1>
+  </header>
+  
+  <!-- Password Container -->
+  <div id="passwordContainer">
+    <label for="passwordInput">Inserisci Password:</label>
+    <input type="text" id="passwordInput">
+    <button id="applyPasswordButton">Apply</button>
+  </div>
+  
+  <!-- Content Container (Filters + Accordion), initially hidden -->
+  <div id="contentContainer">
+    <div class="filter-controls" id="filterControls">
+      <!-- Dynamic filter groups will be inserted here -->
+    </div>
+    <main>
+      <div class="accordion" id="accordionContainer">
+        <!-- Accordion items will be generated here -->
+      </div>
+    </main>
+  </div>
+  
+  <script>
+    let figures = []; // Array to hold CSV data
+    let currentActiveItem = null; // To track the open accordion item
+    let userPassword = ""; // Global variable to store the entered password
+
+    // List of dynamic filter fields – now including "Lezione"
+    const dynamicFilterFields = ["Tempi", "Stile", "Presa", "Lezione"];
+
+    // Generate dynamic filter controls based on CSV data.
+    function generateFilterControls() {
+      const container = document.getElementById('filterControls');
+      container.innerHTML = ""; // Clear any existing filters.
+      
+      dynamicFilterFields.forEach(field => {
+        // Compute unique values for the field (ignore empty values).
+        const uniqueValues = [...new Set(figures.map(item => item[field] ? item[field] : "").filter(v => v !== ""))];
+        // Sort them (numerically for Tempi, alphabetically for others)
+        if(field === "Tempi") {
+          uniqueValues.sort((a, b) => a - b);
+        } else {
+          uniqueValues.sort();
+        }
+        // Create a filter group div.
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'filter-group';
+        groupDiv.id = field.toLowerCase() + "FilterGroup";
+        // Add a label for the group.
+        const span = document.createElement('span');
+        span.textContent = field + ":";
+        groupDiv.appendChild(span);
+        // Create a checkbox for each unique value.
+        uniqueValues.forEach(value => {
+          const label = document.createElement('label');
+          const input = document.createElement('input');
+          input.type = 'checkbox';
+          input.value = value;
+          input.addEventListener('change', filterFigures);
+          label.appendChild(input);
+          label.appendChild(document.createTextNode(value));
+          groupDiv.appendChild(label);
+        });
+        container.appendChild(groupDiv);
+      });
+      
+      // Append a static Video filter group.
+      const videoGroup = document.createElement('div');
+      videoGroup.className = 'filter-group video-filter-group';
+      videoGroup.id = "videoFilterGroup";
+      const span = document.createElement('span');
+      span.textContent = "Video:";
+      videoGroup.appendChild(span);
+      const radioOptions = [
+        { value: "all", label: "Tutti", checked: true },
+        { value: "with", label: "Con Video" },
+        { value: "without", label: "Senza Video" }
+      ];
+      radioOptions.forEach(opt => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'videoFilter';
+        input.value = opt.value;
+        if(opt.checked) input.checked = true;
+        input.addEventListener('change', filterFigures);
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(opt.label));
+        videoGroup.appendChild(label);
+      });
+      container.appendChild(videoGroup);
+    }
+
+    // Helper: Get selected values from a filter group.
+    function getSelectedValues(groupId) {
+      const checkboxes = document.querySelectorAll(`#${groupId} input[type="checkbox"]`);
+      return Array.from(checkboxes)
+                  .filter(cb => cb.checked)
+                  .map(cb => cb.value);
+    }
+
+    // Filter figures based on dynamic filters and the entered password.
+    function filterFigures() {
+      // Gather selected values for each dynamic filter field.
+      const selectedFilters = {};
+      dynamicFilterFields.forEach(field => {
+        const groupId = field.toLowerCase() + "FilterGroup";
+        selectedFilters[field] = getSelectedValues(groupId);
+      });
+      // Get the selected video filter.
+      const videoFilter = document.querySelector('input[name="videoFilter"]:checked').value;
+      
+      const filteredFigures = figures.filter(figure => {
+        // Check each dynamic filter field.
+        let pass = true;
+        dynamicFilterFields.forEach(field => {
+          if(selectedFilters[field].length > 0 && !selectedFilters[field].includes(figure[field])) {
+            pass = false;
+          }
+        });
+        // Video filter.
+        const videoPresent = figure.Video !== "";
+        const videoMatch = videoFilter === "all" ||
+                           (videoFilter === "with" ? videoPresent : !videoPresent);
+        // Password filter:
+        // Always show figures with an empty Password field.
+        // For figures with a non-empty Password, show only if the user's password matches.
+        let passwordMatch = false;
+        if(figure.Password.trim() === "") {
+          passwordMatch = true;
+        } else {
+          // Only show these figures if the user has entered a password and it matches one of the allowed values.
+          if(userPassword !== "") {
+            let allowed = figure.Password.split('-').map(x => x.trim().toLowerCase());
+            passwordMatch = (allowed.indexOf(userPassword.toLowerCase()) !== -1);
+          }
+        }
+        return pass && videoMatch && passwordMatch;
+      });
+      
+      displayAccordion(filteredFigures);
+    }
+
+    // Display the accordion items (with lazy-loading of videos).
+    function displayAccordion(figureList) {
+      const container = document.getElementById('accordionContainer');
+      container.innerHTML = "";
+      if (figureList.length === 0) {
+        container.innerHTML = '<p>Nessuna figura corrisponde ai filtri selezionati.</p>';
+        return;
+      }
+      figureList.forEach(figure => {
+        const item = document.createElement('div');
+        item.className = 'accordion-item';
+        const header = document.createElement('div');
+        header.className = 'accordion-header';
+        const hasVideo = figure.Video !== "";
+        header.innerHTML = `
+          <span class="figure-title">${hasVideo ? '🎞️ ' : ''}${figure.Figura}</span>
+          <span class="figure-tempi">${figure.Tempi}</span>
+        `;
+        header.addEventListener('click', () => {
+          if (currentActiveItem && currentActiveItem !== item) {
+            removeVideo(currentActiveItem);
+            currentActiveItem.classList.remove('active');
+          }
+          const isExpanding = !item.classList.contains('active');
+          item.classList.toggle('active');
+          currentActiveItem = item.classList.contains('active') ? item : null;
+          if (isExpanding && hasVideo) {
+            loadVideo(item);
+          } else {
+            removeVideo(item);
+          }
+        });
+        item.appendChild(header);
+        const content = document.createElement('div');
+        content.className = 'accordion-content';
+        let videoHTML = "";
+        if (hasVideo) {
+          videoHTML = `<div class="video-container" data-video="video/${figure.Video}.mp4">
+                         <div class="spinner"></div>
+                       </div>`;
+        } else {
+          videoHTML = '<p><em>Nessun video disponibile.</em></p>';
+        }
+        content.innerHTML = `
+          ${videoHTML}
+          <p><strong>Tempi:</strong> ${figure.Tempi}</p>
+          <p><strong>Stile:</strong> ${figure.Stile}</p>
+          <p><strong>Presa:</strong> ${figure.Presa}</p>
+          <p><strong>Lezione:</strong> ${figure.Lezione}</p>
+        `;
+        item.appendChild(content);
+        container.appendChild(item);
+      });
+    }
+
+    // Lazy-load the video when an item is expanded.
+    function loadVideo(item) {
+      const container = item.querySelector('.video-container');
+      if (!container) return;
+      if (container.querySelector('video')) return;
+      const videoSrc = container.getAttribute('data-video');
+      const videoEl = document.createElement('video');
+      videoEl.setAttribute('loop', '');
+      videoEl.setAttribute('muted', '');
+      videoEl.setAttribute('playsinline', '');
+      videoEl.addEventListener('loadeddata', () => {
+        const spinner = container.querySelector('.spinner');
+        if (spinner) spinner.style.display = 'none';
+        videoEl.play();
+      });
+      videoEl.src = videoSrc;
+      container.appendChild(videoEl);
+    }
+    function removeVideo(item) {
+      const container = item.querySelector('.video-container');
+      if (!container) return;
+      container.innerHTML = '<div class="spinner"></div>';
+    }
+
+    // Add event listeners to filter inputs.
+    function addFilterEventListeners() {
+      document.querySelectorAll('.filter-controls input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', filterFigures);
+      });
+      document.querySelectorAll('.filter-controls input[name="videoFilter"]').forEach(rb => {
+        rb.addEventListener('change', filterFigures);
+      });
+    }
+
+    // Handle password application.
+    document.getElementById('applyPasswordButton').addEventListener('click', () => {
+      userPassword = document.getElementById('passwordInput').value.trim();
+      // Reveal the content container.
+      document.getElementById('contentContainer').style.display = "block";
+      // Now generate the dynamic filters and display figures.
+      generateFilterControls();
+      addFilterEventListeners();
+      filterFigures();
+    });
+
+    // Fetch and parse the CSV file.
+    fetch('lista_figure.csv')
+      .then(response => response.text())
+      .then(csvText => {
+        const results = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+        figures = results.data;
+        figures.forEach(item => {
+          item.Tempi = item.Tempi ? item.Tempi.trim() : "";
+          item.Stile = item.Stile ? item.Stile.trim().toLowerCase() : "";
+          item.Presa = item.Presa ? item.Presa.trim().toLowerCase() : "";
+          item.Lezione = item.Lezione ? item.Lezione.trim() : "";
+          item.Video = item.Video ? item.Video.trim() : "";
+          item.Password = item.Password ? item.Password.trim() : "";
+        });
+        // On initial load, show figures with an empty Password.
+        const initialFigures = figures.filter(figure => figure.Password.trim() === "");
+        displayAccordion(initialFigures);
+      })
+      .catch(error => console.error("Errore nel caricamento del CSV:", error));
+  </script>
+</body>
+</html>

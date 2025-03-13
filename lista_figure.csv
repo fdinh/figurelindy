@@ -1,0 +1,119 @@
+Figura,Tempi,Stile,Presa,Video,Lezione,Password
+Extra spin,2,aperta,standard,extraspin,boogie int,mostratutte-mostrabi
+Switch ,2,aperta,standard,switch,lindy beg,
+Freeze,2,caramelle,standard,,lindy beg,
+Twist ,4,aperta,doppia,twist,boogie int,mostratutte-mostrabi
+Cambio lei ,6,aperta,standard,cambio,lindy beg,
+Cambio lui,6,aperta,standard,cambio_lui,lindy beg,
+Barrel roll ,6,aperta,standard,barrelroll,boogie int,mostratutte-mostrabi
+Cambio con apertura gambe ,6,variazione,standard,cambio_gambe,boogie int,mostratutte-mostrabi
+Cambio con controsterzo ,6,aperta,standard,controsterzo,lindy int,mostratutte-mostrali
+Cambio senza mani,6,aperta,standard,senza_mani,lindy beg,
+Cambio tacco punta,6,aperta,standard,cambio_taccopunta,lindy int,mostratutte-mostrali
+Cambio posto aperto basso,6,aperta,standard,,lindy int,mostratutte-mostrali
+Chiusura bassa,6,aperta,standard,chiusura_bassa,lindy int,mostratutte-mostrali
+Cambio skip up,6,aperta,standard,cambio_skipup,boogie int,mostratutte-mostrabi
+Sugar push,6,aperta,doppia,sugar_push,lindy int,mostratutte-mostrali
+Fonzie petto,6,aperta,standard,fonzie_petto,boogie beg,mostratutte-mostrabb
+Fonzie schiena,6,aperta,standard,fonzie,boogie beg,mostratutte-mostrabb
+Base,6,aperta,standard,base,boogie beg,mostratutte-mostrabb
+Base gira lei ,6,aperta,standard,giro_lei,boogie beg,mostratutte-mostrabb
+Base gira lui ,6,aperta,standard,giro_lui,boogie beg,mostratutte-mostrabb
+Base doppio giro ,6,aperta,standard,giro_entrambi,boogie beg,mostratutte-mostrabb
+Cambi a doppie mani e variazioni,6,aperta,doppia,,lindy beg,
+Base tacco punta,6,aperta,standard,base_taccopunta,lindy int,mostratutte-mostrali
+Chiuso tacco punta,6,chiusa,standard,chiuso_taccopunta,lindy int,mostratutte-mostrali
+Base knee slap (coreo boogie C2) ,6,aperta,standard,knee_slap,boogie int,mostratutte-mostrabi
+Swingout 6T(classe C) ,6,swingout,standard,,boogie int,mostratutte-mostrabi
+Cambio flip flop,6,aperta,,,boogie int,mostratutte-mostrabi
+Passo base kick al 6,6,variazione,standard,base_kick6,boogie adv,mostratutte-mostraba
+Base a presa contraria,6,aperta,standard,cambio_contrario,boogie beg,mostratutte-mostrabb
+Zampa gatto a 6,6,chiusa,chiusa,zampagatto6,workshop ,mostratutte-mostraw
+Zampa gatto a 8,8,chiusa,chiusa,zampagatto8,workshop ,mostratutte-mostraw
+Contrario base,6,aperta,contraria,contrario_base,boogie adv,mostratutte-mostraba
+Contrario base 8,8,aperta,contraria,contrario_base8,boogie adv,mostratutte-mostraba
+Contrario sciabolata,8,passo base,contraria,contrario_sciabolata,boogie adv,mostratutte-mostraba
+Swingout ,8,swingout,standard,swingout,lindy int,mostratutte-mostrali
+Swingout Savoy ,8,swingout,standard,swingout_savoy,lindy int,mostratutte-mostrali
+Swingout inside turn ,8,swingout,standard,singout_insideturn,lindy int,mostratutte-mostrali
+Swingout outside turn ,8,swingout,standard,swingout_outsideturn,lindy int,mostratutte-mostrali
+Swingout outside turn finisher,8,swingout,standard,swingout_outsideturnfinish,lindy int,mostratutte-mostrali
+Swingout double twist ,8,swingout,standard,swingout_doubletwist,lindy int,mostratutte-mostrali
+Swingout con salto all'indietro ,8,swingout,standard,swingout_saltoindietro,lindy int,mostratutte-mostrali
+Swingout con salto in avanti,8,swingout,standard,swingout_saltoavanti,lindy int,mostratutte-mostrali
+Swingout tripli step (larosa) ,8,swingout,standard,,workshop ,mostratutte-mostrala
+Swingout shorty George (larosa) ,8,swingout,standard,,workshop ,mostratutte-mostrala
+Swingout salto piedi (larosa) ,8,swingout,standard,,workshop ,mostratutte-mostrala
+Swingout lui/lei fermi,8,swingout,standard,swingout_fermo,lindy int,mostratutte-mostrali
+Texas Tommy ,8,swingout,standard,texastommy,lindy int,mostratutte-mostrali
+Texas Tommy giro doppio,8,swingout,standard,texastommy_girodoppio,lindy adv,mostratutte-mostrala
+Texas Tommy controsterzo,8,swingout,standard,texastommy_controsterzo,boogie adv,mostratutte-mostraba
+Cambio posto con finta (coreo boogie D3) ,8,aperta,,,boogie adv,mostratutte-mostraba
+Lindy circle chiuso chiuso,8,swingout,standard,circleCC,lindy beg,
+Lindy circle chiuso aperto,8,swingout,standard,circleCA,lindy beg,
+Lindy circle aperto chiuso,8,swingout,standard,circleAC,lindy beg,
+Lindy circle aperto aperto,8,swingout,standard,circleAA,lindy beg,
+Yoyo lui,8,chiusa,chiusa,yoyo_lui,lindy beg,
+Yoyo lei,8,chiusa,chiusa,yoyo_lei,lindy beg,
+Promenade semplice lei,8,chiusa,chiusa,promenade_lei,lindy beg,
+Promenade semplice lui,8,chiusa,chiusa,promenade_lui,lindy beg,
+Barrel roll con richiamo lei (coreo boogie C2) ,8,aperta,,,boogie int,mostratutte-mostrabi
+Send out + extra spin (coreo boogie A1) ,8,chiusa,chiusa,sendout_extraspin,boogie int,mostratutte-mostrabi
+Basket,8,aperta,doppia,basket,lindy beg,
+Basket + giro lei,8,aperta,doppia,basket_girolei,lindy int,mostratutte-mostrali
+Basket + giro lui,8,aperta,doppia,basket_girolui,lindy int,mostratutte-mostrali
+Fenicottero ,8,aperta,incrociata,fenicottero,lindy beg,
+Casque frontale,8,aperta,incrociata,casque_frontale,boogie int,mostratutte-mostrabi
+Casque laterale (coreo boogie D3),8,aperta,incrociata,casque_laterale,boogie int,mostratutte-mostrabi
+Cambio con shuffle frontale sul 5,8,aperta,,,boogie int,mostratutte-mostrabi
+Cambio con shuffle retro sul 5,8,aperta,,,boogie int,mostratutte-mostrabi
+Cambio con blocco,8,aperta,standard,cambio_blocco,boogie int,mostratutte-mostrabi
+Barrel roll con giro,8,aperta,standard,barrelroll8,boogie int,mostratutte-mostrabi
+Sugar push doppio ,10,aperta,doppia,sugarpush_doppio,boogie int,mostratutte-mostrabi
+Muletto,10,aperta,standard,muletto,boogie beg,mostratutte-mostrabb
+Basket doppio,10,aperta,doppia,basket_doppio,boogie int,mostratutte-mostrabi
+Casque minne laterale (coreo boogie D5),10,finisher,incrociata,,boogie int,mostratutte-mostrabi
+Flip flop,10,aperta,standard,flip_flop,boogie int,mostratutte-mostrabi
+Cambio shuffle,12,aperta,standard,cambio_shuffle,boogie adv,mostratutte-mostraba
+Var. punta punta,12,variazione,standard,var_punta,boogie adv,mostratutte-mostraba
+Var. side kick,12,variazione,standard,var_sidekick,boogie adv,mostratutte-mostraba
+Var. side kick freeze,12,variazione,standard,var_sidekick_freeze,boogie adv,mostratutte-mostraba
+Var. side kick doppio passo,12,variazione,standard,var_sidekick_pp,boogie adv,mostratutte-mostraba
+Var. side kick giro,10,variazione,standard,var_sidekick_giro,boogie adv,mostratutte-mostraba
+Promenade lindy,16,blocco16,chiusa,promenade,lindy beg,
+Tuck turn lato sx + manda fuori con extra spin + pausa (coreo max) ,16,blocco16,,,lindy beg,
+Texas Tommy Var. Frankie six ,16,blocco16,,,lindy int,mostratutte-mostrali
+Kick the dog 4x + ritorno ,16,blocco16,chiusa,kick_dog,lindy beg,
+Marinaio (richiamo 8T + giro 8T),16,blocco16,doppia,marinaio,lindy beg,
+Swingout pas de bourré (coreo boogie D4) ,16,blocco16,aperta,swingout_pasdebourre,boogie int,mostratutte-mostrabi
+Sendout footwork + cambio + twist (coreo boogie C1),16,blocco16,,,boogie int,mostratutte-mostrabi
+Accappatoio chiuso,16,blocco16,chiusa,accappatoio_chiuso,lindy int,mostratutte-mostrali
+Accappatoio con giro,16,blocco16,chiusa,accappatoio_giro,lindy int,mostratutte-mostrali
+Frankie six,18,aperta,incrociata,frankie6,lindy beg,
+Passo mambo,4,caramelle,standard,,lindy beg,
+Fall of the log ,4,caramelle,separati,,lindy int,mostratutte-mostrali
+Tacky Annie ,4,caramelle,separati,,lindy beg,
+Shim sham,4,caramelle,separati,,lindy beg,
+Ondeggiamenti ginocchio ,4,caramelle,standard,,boogie beg,mostratutte-mostrabb
+Shorty George ,8,caramelle,separati,,lindy beg,
+Box step ,8,caramelle,separati,box_step,lindy beg,
+Camminata con finta presa,8,caramelle,separati,camminata_finta,lindy beg,
+Talloni lento,8,caramelle,standard,talloni_lento,boogie adv,mostratutte-mostraba
+Talloni medio,4,caramelle,standard,talloni_medio,boogie adv,mostratutte-mostraba
+Talloni veloce,4,caramelle,standard,talloni_veloce,boogie adv,mostratutte-mostraba
+flip flop frontale,,caramelle,,,boogie adv,mostratutte-mostraba
+Passo Irish ,4,caramelle,standard,,boogie adv,mostratutte-mostraba
+Swingout con salto avanti ,8,finisher,standard,,boogie int,mostratutte-mostrabi
+Swingout con salto indietro ,8,finisher,standard,,boogie int,mostratutte-mostrabi
+salto pas de chat,8,finisher,chiusa,pas_de_chat,boogie beg,mostratutte-mostrabb
+salto sulla coscia ,8,finisher,chiusa,salto_coscia,boogie beg,mostratutte-mostrabb
+salto sulla coscia freeze,8,finisher,chiusa,salto_coscia_freeze,boogie beg,mostratutte-mostrabb
+Frog laterale,8,finisher,chiusa,frog_laterale,lindy int,mostratutte-mostrali
+Frog tandem,8,finisher,incrociata,frog_tandem,lindy int,mostratutte-mostrali
+Promenade (classe C I) ,8,finisher,standard,promenade_frontale_C,boogie int,mostratutte-mostrabi
+Tada (classe C II) ,4,finisher,standard,tada_C,boogie int,mostratutte-mostrabi
+Promenade con giro (classe C III) ,8,finisher,standard,promenade_giro_C,boogie int,mostratutte-mostrabi
+Passa sotto lei (classe C IV) ,8,finisher,incrociata,,boogie int,mostratutte-mostrabi
+Halleluja (classe C VI) ,8,finisher,chiusa,halleluja_C,boogie int,mostratutte-mostrabi
+Torre di Pisa ,8,finisher,contraria,torrepisa,lindy int,mostratutte-mostrali
+Casque,8,finisher,contraria,casque,lindy int,mostratutte-mostrali
